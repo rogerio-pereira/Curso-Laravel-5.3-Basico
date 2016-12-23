@@ -1,5 +1,7 @@
 <?php
 
+Route::resource('/painel/produtos', 'Painel\ProdutoController');
+
 //Middleware para todas as rodas
 //Route::group(['middleware' => 'auth'], function(){
 Route::group(['namespace' => 'Site'], function(){
