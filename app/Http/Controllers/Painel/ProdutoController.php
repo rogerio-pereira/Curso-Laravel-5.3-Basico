@@ -97,40 +97,85 @@ class ProdutoController extends Controller
 
     public function tests()
     {
-        /*$prod = $this->produto;
-        $prod->name = 'Nome do Produto';
-        $prod->number = 131231;
-        $prod->active = true;
-        $prod->category = 'eletronicos';
-        $prod->description = 'Descricao do produto aqui';
+        //===========================================
+        //INSERT
+        //===========================================
+            /*$prod = $this->produto;
+            $prod->name = 'Nome do Produto';
+            $prod->number = 131231;
+            $prod->active = true;
+            $prod->category = 'eletronicos';
+            $prod->description = 'Descricao do produto aqui';
 
-        $insert = $prod->save();*/
+            $insert = $prod->save();*/
 
-        /*
-        NUNCA USAR ->insert(...);
-        Deixa em risco sua aplicação.
-        Usar ao invés de insert create (abaixo)
-        Quando usar o create é preciso preencher o fillable
+            /*
+            NUNCA USAR ->insert(...);
+            Deixa em risco sua aplicação.
+            Usar ao invés de insert create (abaixo)
+            Quando usar o create é preciso preencher o fillable
 
-        $insert = $this->produto->insert([
-                    'name'          => 'Nome do Produto 2',
-                    'number'        => 434435,
-                    'active'        => false,
-                    'category'      => 'eletronicos',
-                    'description'   => 'Descricao vem aqui',
-                ]);*/
+            $insert = $this->produto->insert([
+                        'name'          => 'Nome do Produto 2',
+                        'number'        => 434435,
+                        'active'        => false,
+                        'category'      => 'eletronicos',
+                        'description'   => 'Descricao vem aqui',
+                    ]);*/
 
-        $insert = $this->produto->create([
-                    'name'          => 'Nome do Produto 2',
-                    'number'        => 434435,
-                    'active'        => false,
-                    'category'      => 'eletronicos',
-                    'description'   => 'Descricao vem aqui',
-                ]);
+            /*$insert = $this->produto->create([
+                        'name'          => 'Nome do Produto 2',
+                        'number'        => 434435,
+                        'active'        => false,
+                        'category'      => 'eletronicos',
+                        'description'   => 'Descricao vem aqui',
+                    ]);
 
-        if($insert)
-            return "Inserido com sucesso, ID: {$insert->id}";
-        else
-            return 'Falha ao inserir!';
+            if($insert)
+                return "Inserido com sucesso, ID: {$insert->id}";
+            else
+                return 'Falha ao inserir!';*/
+
+
+
+
+        //===========================================
+        //UPDATE
+        //===========================================
+            /*$prod = $this->produto->find(5);
+
+            //debug
+            //dd($prod);
+            
+            $prod->name = 'Update 2';
+            $prod->number = 797890;
+
+            $update = $prod->save();*/
+
+            /*$prod = $this->produto->find(4);
+
+            //Só funciona se tiver a variavel fillable
+            $update = $prod->update([
+                                        'name'      => 'Update teste',
+                                        'number'    => 6765756,
+                                        'active'    => true,
+                                    ]);*/
+
+
+            //tanto o update quanto o create podem serem encadeados ao find, por exemplo
+            //Estou quebrando as linhas para demonstração que pode ser feito e para ficar legvel
+            $update = $this->produto
+                                 ->where('number', 67657560)
+                                 ->where('active', '<>', true)
+                                 ->update([
+                                            'name'      => 'Update teste 2',
+                                            'number'    => 676575606,
+                                            'active'    => false,
+                                        ]);
+
+            if($update)
+                return "Atualizado com sucesso";
+            else
+                return 'Falha ao atualizar!';
     }
 }
