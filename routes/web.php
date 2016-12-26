@@ -1,5 +1,6 @@
 <?php
 
+Route::get('/painel/produtos/tests', 'Painel\ProdutoController@tests');
 Route::resource('/painel/produtos', 'Painel\ProdutoController');
 
 //Middleware para todas as rodas

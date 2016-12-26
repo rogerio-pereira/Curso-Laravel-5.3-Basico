@@ -10,14 +10,21 @@ use App\Models\Painel\Product;
 //php artisan make:controller Painel\\ProdutoController --resource
 class ProdutoController extends Controller
 {
+    private $produto;
+
+    public function __construct(Product $product)
+    {
+        $this->produto = $product;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Product $product)
+    public function index()
     {
-        $products = $product->all();        
+        $products = $this->produto->all();        
 
         return view('painel.products.index', compact('products'));
     }
@@ -86,5 +93,44 @@ class ProdutoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function tests()
+    {
+        /*$prod = $this->produto;
+        $prod->name = 'Nome do Produto';
+        $prod->number = 131231;
+        $prod->active = true;
+        $prod->category = 'eletronicos';
+        $prod->description = 'Descricao do produto aqui';
+
+        $insert = $prod->save();*/
+
+        /*
+        NUNCA USAR ->insert(...);
+        Deixa em risco sua aplicação.
+        Usar ao invés de insert create (abaixo)
+        Quando usar o create é preciso preencher o fillable
+
+        $insert = $this->produto->insert([
+                    'name'          => 'Nome do Produto 2',
+                    'number'        => 434435,
+                    'active'        => false,
+                    'category'      => 'eletronicos',
+                    'description'   => 'Descricao vem aqui',
+                ]);*/
+
+        $insert = $this->produto->create([
+                    'name'          => 'Nome do Produto 2',
+                    'number'        => 434435,
+                    'active'        => false,
+                    'category'      => 'eletronicos',
+                    'description'   => 'Descricao vem aqui',
+                ]);
+
+        if($insert)
+            return "Inserido com sucesso, ID: {$insert->id}";
+        else
+            return 'Falha ao inserir!';
     }
 }
