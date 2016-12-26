@@ -1,15 +1,32 @@
-<h1>Listagem de produtos</h1>
+@extends('painel.templates.template')
 
-<table>
-    <tr>
-        <th>Nome</th>
-        <th>Descricao</th>
-    </tr>
+@section('content')
+    <h1 class='title-pg'>Listagem de produtos</h1>
 
-    @foreach ($products as $product)
+    <a href='' class='btn btn-primary btn-add'>
+        <span class='glyphicon glyphicon-plus'></span> Cadastrar
+    </a>
+
+    <table class='table table-striped'>
         <tr>
-            <td>{{$product->name}}</td>
-            <td>{{$product->description}}</td>
-        </tr>    
-    @endforeach
-</table>
+            <th>Nome</th>
+            <th>Descricao</th>
+            <th width='100px'>Ações</th>
+        </tr>
+
+        @foreach ($products as $product)
+            <tr>
+                <td>{{$product->name}}</td>
+                <td>{{$product->description}}</td>
+                <td>
+                    <a href='' class='actions edit'>
+                        <span class='glyphicon glyphicon-pencil'></span>
+                    </a>
+                    <a href='' class='actions delete'>
+                        <span class='glyphicon glyphicon-trash'></span>
+                    </a>
+                </td>
+            </tr>    
+        @endforeach
+    </table>
+@endsection
