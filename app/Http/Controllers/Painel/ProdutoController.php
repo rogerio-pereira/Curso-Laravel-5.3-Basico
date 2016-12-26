@@ -164,7 +164,7 @@ class ProdutoController extends Controller
 
             //tanto o update quanto o create podem serem encadeados ao find, por exemplo
             //Estou quebrando as linhas para demonstração que pode ser feito e para ficar legvel
-            $update = $this->produto
+            /*$update = $this->produto
                                  ->where('number', 67657560)
                                  ->where('active', '<>', true)
                                  ->update([
@@ -176,6 +176,29 @@ class ProdutoController extends Controller
             if($update)
                 return "Atualizado com sucesso";
             else
-                return 'Falha ao atualizar!';
+                return 'Falha ao atualizar!';*/
+
+
+
+
+        //===========================================
+        //DELETE
+        //===========================================
+            /*$prod = $this->produto->find(3);
+            $delete = $prod->delete();*/
+
+            //A diferença entre delete e destroy é que o destrou não precisar fazer o find
+            //Pode ser passado também um array
+            //$this->produto->destroy([3,4,5]);
+            /*$delete = $this->produto->destroy(2);*/
+
+            $delete = $this->produto
+                                ->where('number', 797890)
+                                ->delete();
+
+            if($delete)
+                return "Deletado com sucesso";
+            else
+                return 'Falha ao deletar!';
     }
 }
