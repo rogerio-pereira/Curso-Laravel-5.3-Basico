@@ -51,6 +51,18 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
+        //Todos os campos do formulario
+        //dd($request->all());
+        
+        //Campos especificados
+        //dd($request->only(['name', 'number']));
+        
+        //Exceto os campos especificado
+        //dd($request->except(['_token', 'category']));
+        
+        //Campo específico
+        dd($request->input('name'));
+
         return 'Cadastrando...';
     }
 
