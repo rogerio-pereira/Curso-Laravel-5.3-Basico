@@ -11,6 +11,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        /*
+            Modo não tão Correto correto é criar um seeder pelo artisan
+         App\User::create([
+                'name' => 'Rogério Eduardo Pereira',
+                'email' => 'rogerio@colmeiatecnologia.com.br',
+                'password' => bcrypt('bospe43bo');
+            ]);*/
+
+        $this->call(UserTableSeeder::class);
     }
 }
