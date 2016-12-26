@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Painel;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Painel\Product;
 
 //Criado com o comando
 //php artisan make:controller Painel\\ProdutoController --resource
@@ -14,9 +15,11 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Product $product)
     {
-        return 'Listagem dos Produtos';
+        $products = $product->all();        
+
+        return view('painel.products.index', compact('products'));
     }
 
     /**
