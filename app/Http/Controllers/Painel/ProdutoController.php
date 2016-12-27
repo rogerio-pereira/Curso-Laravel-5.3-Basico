@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Painel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Painel\Product;
+use App\Http\Requests\Painel\ProductFormRequest;
 
 //Criado com o comando
 //php artisan make:controller Painel\\ProdutoController --resource
@@ -49,7 +50,7 @@ class ProdutoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductFormRequest $request)
     {
         //Todos os campos do formulario
         //dd($request->all());
@@ -80,10 +81,10 @@ class ProdutoController extends Controller
                         ->withInput();
         }*/
 
-        //Melhor forma
+        //Forma mais facil
         //Campo Messages não é obrigatorio
         //$this->validate($request, $this->produto->rules);
-        $this->validate($request, $this->produto->rules, $this->produto->messages);
+        //$this->validate($request, $this->produto->rules, $this->produto->messages);
 
         //Salva no banco
         $insert = $this->produto->create($dataForm);
