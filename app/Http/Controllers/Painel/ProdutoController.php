@@ -61,9 +61,20 @@ class ProdutoController extends Controller
         //dd($request->except(['_token', 'category']));
         
         //Campo específico
-        dd($request->input('name'));
+        //dd($request->input('name'));
+        
+        //Pega todos os campos do formularios
+        $dataForm = $request->all();
 
-        return 'Cadastrando...';
+        $dataForm['active'] = (!isset($dataForm['active'])) ? 0 : 1;
+
+        //Salva no banco
+        $insert = $this->produto->create($dataForm);
+
+        if($insert)
+            return redirect()->route('produtos.index');
+        else
+            return redirect()->back();
     }
 
     /**
