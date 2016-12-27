@@ -12,6 +12,7 @@ use App\Http\Requests\Painel\ProductFormRequest;
 class ProdutoController extends Controller
 {
     private $produto;
+    private $totalPage = 3;
 
     public function __construct(Product $product)
     {
@@ -26,7 +27,12 @@ class ProdutoController extends Controller
     public function index()
     {
         $title = 'Listagem dos Produtos';
-        $products = $this->produto->all();        
+
+        //Exibe todos os itens
+        //$products = $this->produto->all();
+        
+        //Exibe paginado
+        $products = $this->produto->paginate($this->totalPage);
 
         return view('painel.products.index', compact('products', 'title'));
     }

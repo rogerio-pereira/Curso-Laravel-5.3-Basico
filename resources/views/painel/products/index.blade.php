@@ -29,4 +29,7 @@
             </tr>    
         @endforeach
     </table>
+
+    {{-- LINKS DE PAGINAÇÃO --}}
+    {!! $products->links() !!}
 @endsection
