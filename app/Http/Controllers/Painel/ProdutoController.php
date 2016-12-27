@@ -103,7 +103,11 @@ class ProdutoController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = $this->produto->find($id);
+
+        $title = "Produto: {$product->name}";
+
+        return view('painel.products.show', compact('product', 'title'));
     }
 
     /**
@@ -159,7 +163,15 @@ class ProdutoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = $this->produto->find($id);
+
+        $delete = $product->delete();
+
+        //Verifica se realmente atualizou
+        if($delete)
+            return redirect()->route('produtos.index');
+        else
+            return redirect()->route('produtos.show', $id)->with(['errors' => 'Falha ao deletar']);
     }
 
     public function tests()
