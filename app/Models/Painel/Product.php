@@ -18,4 +18,11 @@ class Product extends Model
                         'category'      => 'required',
                         'description'   => 'min:3|max:1000'
                     ];
+
+    //Não obrigatório
+    public $messages = [
+                            'name.required' => 'Campo nome é obrigatório',
+                            'number.required' => 'Campo número é obrigatório',
+                            'number.numeric' => 'Precisa ser apenas números',
+                        ];
 }

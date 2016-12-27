@@ -69,7 +69,21 @@ class ProdutoController extends Controller
         $dataForm['active'] = (!isset($dataForm['active'])) ? 0 : 1;
 
         //valida os dados
-        $this->validate($request, $this->produto->rules);
+        //Pior forma
+        //Pode se passar um array de mensagens de erros como é feito abaixo
+        /*$validade = validator($dataForm, $this->produto->rules);
+
+        if($validade->fails()) {
+            return redirect()
+                        ->route('produtos.create')
+                        ->withErrors($validade)
+                        ->withInput();
+        }*/
+
+        //Melhor forma
+        //Campo Messages não é obrigatorio
+        //$this->validate($request, $this->produto->rules);
+        $this->validate($request, $this->produto->rules, $this->produto->messages);
 
         //Salva no banco
         $insert = $this->produto->create($dataForm);
